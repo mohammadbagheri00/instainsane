@@ -52,8 +52,14 @@ else
 default_wl_pass="passwords.lst"
 read -p $'\e[1;92mPassword List (Enter to default list): \e[0m' wl_pass
 wl_pass="${wl_pass:-${default_wl_pass}}"
+if [ -f "$wl_pass" ]; then
 default_threads="100"
 threads="${threads:-${default_threads}}"
+else
+printf "\e[1;91mList not found! Try again\e[0m\n"
+sleep 1
+start
+fi
 fi
 }
 
